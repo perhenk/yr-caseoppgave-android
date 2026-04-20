@@ -1,18 +1,16 @@
 package com.example.myapp.data.models
 
-import com.example.myapp.data.models.CurrentWeatherUnits
-
 data class WeatherForecast(
     val latitude: Double,
     val longitude: Double,
     val generationtime_ms: Double,
-    val utc_offset_seconds: Integer,
+    val utc_offset_seconds: Int,
     val timezone: String,
     val timezone_abbreviation: String,
-    val elevation: Float,
+    val elevation: Double,
 
-    val current_weather_units: CurrentWeatherUnits,
-    val current_weather: CurrentWeather,
-    val daily_units: DailyUnits,
-    val daily: Daily
+    val currentWeather_units: CurrentWeatherUnits,
+    val currentWeather: CurrentWeather,
+    val dailyUnits: DailyUnits,
+    val dailyForecasts: List<DayForecast>
 )
