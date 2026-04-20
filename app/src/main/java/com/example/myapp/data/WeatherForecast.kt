@@ -12,4 +12,6 @@ data class WeatherForecast(
 
     val current_weather_units: CurrentWeatherUnits,
     val current_weather: CurrentWeather,
+    val daily_units: DailyUnits,
+    val daily: Daily
 )
