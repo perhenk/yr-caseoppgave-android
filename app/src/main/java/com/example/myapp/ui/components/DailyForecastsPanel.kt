@@ -1,10 +1,8 @@
 package com.example.myapp.ui.components
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,9 +14,9 @@ import com.example.myapp.data.models.DayForecast
 import com.example.myapp.utils.formatDate
 
 @Composable
-fun DailyForecastsPanel(dailyForcasts: List<DayForecast>) {
+fun DailyForecastsPanel(dailyForecasts: List<DayForecast>) {
     LazyColumn(modifier= Modifier.fillMaxSize()) {
-        items(dailyForcasts){data -> DayForecastRow(data)}
+        items(dailyForecasts){ data -> DayForecastRow(data)}
         }
 }
 
