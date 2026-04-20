@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             YrCaseoppgaveTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    Column(Modifier.padding(40.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Column( verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app")
                         CurrentWeatherPanel(fakeData.currentWeather)
                         DailyForecastsPanel(fakeData.dailyForecasts)
