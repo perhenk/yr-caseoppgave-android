@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Arrangement
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.myapp.data.generateFakeWheaterData
 import com.example.myapp.ui.components.CurrentWeatherPanel
+import com.example.myapp.ui.components.DailyForecastsPanel
 import com.example.myapp.ui.theme.YrCaseoppgaveTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,10 +30,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             YrCaseoppgaveTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    Column(Modifier.padding(20.dp)) {
+                    Column(Modifier.padding(40.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app")
                         CurrentWeatherPanel(fakeData.currentWeather)
-
+                        DailyForecastsPanel(fakeData.dailyForecasts)
                     }
                 }
             }
