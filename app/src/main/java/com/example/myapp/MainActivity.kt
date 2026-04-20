@@ -14,7 +14,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.example.myapp.data.generateFakeWheaterData
+import com.example.myapp.ui.WeatherSurface
 import com.example.myapp.ui.components.CurrentWeatherPanel
 import com.example.myapp.ui.components.DailyForecastsPanel
 import com.example.myapp.ui.theme.YrCaseoppgaveTheme
@@ -29,13 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             YrCaseoppgaveTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Column( verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text("PH's yr app")
-                        CurrentWeatherPanel(fakeData.currentWeather)
-                        DailyForecastsPanel(fakeData.dailyForecasts)
-                    }
-                }
+                WeatherSurface(fakeData)
             }
         }
     }
