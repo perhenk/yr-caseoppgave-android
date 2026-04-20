@@ -1,5 +1,6 @@
-package com.example.myapp.data
+package com.example.myapp.data.models
 
+import com.example.myapp.data.models.CurrentWeatherUnits
 
 data class WeatherForecast(
     val latitude: Double,

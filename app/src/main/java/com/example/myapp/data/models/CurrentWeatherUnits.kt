@@ -1,4 +1,4 @@
-package com.example.myapp.data
+package com.example.myapp.data.models
 
 data class CurrentWeatherUnits(
     val time: String,

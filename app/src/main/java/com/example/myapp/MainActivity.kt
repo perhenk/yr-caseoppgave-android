@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
             YrCaseoppgaveTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                        Text("Kom i gang!")
+                        Text("Kom i gang :)")
                     }
                 }
             }
