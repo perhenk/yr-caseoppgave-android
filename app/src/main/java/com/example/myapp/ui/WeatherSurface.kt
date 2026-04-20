@@ -27,11 +27,13 @@ fun WeatherSurface (weatherForecastData: WeatherForecast){
                 Column ( verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text("PH's yr app")
                     CurrentWeatherPanel(weatherForecastData.currentWeather)
-                    DailyForecastsPanel(weatherForecastData.dailyForecasts)
+                    DailyForecastsPanel(weatherForecastData.dailyForecasts,
+                        onItemClick = {forecast -> navController.navigate("details")})
                 }
             }
             composable("details") {
-                DayForecastDetails()
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { }
+                DayForecastDetails(navController=navController)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.myapp.ui.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,18 +20,20 @@ import com.example.myapp.data.models.DayForecast
 import com.example.myapp.utils.formatDate
 
 @Composable
-fun DailyForecastsPanel(dailyForecasts: List<DayForecast>) {
+fun DailyForecastsPanel(dailyForecasts: List<DayForecast>,onItemClick: (DayForecast) -> Unit) {
     Text("7-dagers varsel")
     LazyColumn(modifier= Modifier.fillMaxSize()) {
-        items(dailyForecasts){ data -> DayForecastRow(data)}
+        items(dailyForecasts){ data -> DayForecastRow(data,onItemClick)}
         }
 }
 
 
 @Composable
-fun DayForecastRow(dayForecast: DayForecast){
+fun DayForecastRow(dayForecast: DayForecast, onClick: (DayForecast) -> Unit){
     Row (
-        modifier = Modifier.drawBehind() {
+        modifier = Modifier
+            .clickable{onClick(dayForecast)}
+            .drawBehind() {
             val strokeWidth = 1.dp.toPx()
 
             // Top line
