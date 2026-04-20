@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapp.data.models.WeatherForecast
 import com.example.myapp.ui.components.CurrentWeatherPanel
 import com.example.myapp.ui.components.DailyForecastsPanel
+import com.example.myapp.ui.components.DayForecastDetails
 
 @Composable
 fun WeatherSurface (weatherForecastData: WeatherForecast){
@@ -27,7 +28,11 @@ fun WeatherSurface (weatherForecastData: WeatherForecast){
                     Text("PH's yr app")
                     CurrentWeatherPanel(weatherForecastData.currentWeather)
                     DailyForecastsPanel(weatherForecastData.dailyForecasts)
-                }}
+                }
+            }
+            composable("details") {
+                DayForecastDetails()
+            }
         }
     }
 }
