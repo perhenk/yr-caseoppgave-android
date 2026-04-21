@@ -49,8 +49,8 @@ fun generateFakeWheaterData(): WeatherForecast{
         temperature = 13.0,
         windspeed = 14.8,
         winddirection = 267,
-        is_day = 1,
-        weathercode = 0
+        isDay = 1,
+        weatherCode = 0
     )
     val dailyUnits = DailyUnits(
         time= "iso8601",

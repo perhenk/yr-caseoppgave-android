@@ -19,9 +19,9 @@ fun CurrentWeatherPanel (currentWeather: CurrentWeather){
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            WeatherIcon(currentWeather.weathercode)
+            WeatherIcon(currentWeather.weatherCode)
             Text("${currentWeather.temperature} °")
-            Text(weatherDescription(currentWeather.weathercode))
+            Text(weatherDescription(currentWeather.weatherCode))
             Text("Vind ${currentWeather.windspeed} km/t")
         }
 

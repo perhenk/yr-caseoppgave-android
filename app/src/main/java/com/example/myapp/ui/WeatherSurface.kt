@@ -15,6 +15,7 @@ import com.example.myapp.data.models.WeatherForecast
 import com.example.myapp.ui.components.CurrentWeatherPanel
 import com.example.myapp.ui.components.DailyForecastsPanel
 import com.example.myapp.ui.components.DayForecastDetails
+import com.example.myapp.ui.components.LoadingIcon
 
 @Composable
 fun WeatherSurface (weatherForecastData: WeatherForecast){
@@ -22,6 +23,7 @@ fun WeatherSurface (weatherForecastData: WeatherForecast){
     val navController = rememberNavController()
 
     Surface(modifier = Modifier.fillMaxSize()) {
+        
         NavHost(navController = navController, startDestination = "list") {
             composable("list") {
                 Column ( verticalArrangement = Arrangement.spacedBy(10.dp)) {
