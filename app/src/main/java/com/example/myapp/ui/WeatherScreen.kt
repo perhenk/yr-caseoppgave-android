@@ -8,10 +8,8 @@ import com.example.myapp.data.viewmodels.WeatherForecastViewModel
 import com.example.myapp.ui.components.LoadingIcon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -21,7 +19,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp.data.models.toDayForecastList
-
 import com.example.myapp.ui.components.CurrentWeatherPanel
 import com.example.myapp.ui.components.DailyForecastsPanel
 import com.example.myapp.ui.components.DayForecastDetails
@@ -31,7 +28,6 @@ import com.example.myapp.ui.components.DayForecastDetails
 fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewModel()) {
     val uiState = weatherForecastViewModel.state.value
     val navController = rememberNavController()
-    var selectedWeatherForecastIndex = 0
 
     Surface(modifier = Modifier.padding(0.dp,60.dp)) {
     when (uiState) {
@@ -50,6 +46,7 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
 
         is UiState.Success -> {
             val dailyForecasts = uiState.weatherForecast.dailyForecasts.toDayForecastList()
+            var selectedForecast = dailyForecasts[0]
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -57,12 +54,15 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
                         CurrentWeatherPanel(uiState.weatherForecast.currentWeather)
                         DailyForecastsPanel(
                             dailyForecasts,
-                            onItemClick = { forecast -> navController.navigate("details") })
+                            onItemClick = { forecast ->
+                                selectedForecast = forecast
+                                navController.navigate("details")
+                            })
                     }
                 }
                 composable("details") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { }
-                    DayForecastDetails(navController = navController, dailyForecasts[selectedWeatherForecastIndex])
+                    DayForecastDetails(navController = navController, selectedForecast)
                 }
             }
         }
