@@ -1,10 +1,9 @@
 package com.example.myapp.data.service
 
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object WeatherClient {
+object WeatherAPIClient {
     private const val BASE_URL = "https://api.open-meteo.com/v1/"
 
     val apiService by lazy {
