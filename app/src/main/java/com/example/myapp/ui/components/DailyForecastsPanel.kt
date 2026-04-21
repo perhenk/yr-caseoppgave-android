@@ -56,6 +56,6 @@ fun DayForecastRow(dayForecast: DayForecast, onClick: (DayForecast) -> Unit){
         Text(formatDate(dayForecast.time), modifier = Modifier.padding(16.dp))
         WeatherIcon(dayForecast.weatherCode)
         Spacer(modifier = Modifier.weight(1f))
-        Text("${dayForecast.minTemperature.roundToInt()}° - ${dayForecast.maxTemperature.roundToInt()}°",  modifier = Modifier.padding(16.dp))
+        Text("${dayForecast.minTemperature.roundToInt()}° ${dayForecast.maxTemperature.roundToInt()}°",  modifier = Modifier.padding(16.dp))
     }
 }
