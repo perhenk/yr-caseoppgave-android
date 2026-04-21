@@ -14,6 +14,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp.data.generateFakeWheaterData
 import com.example.myapp.ui.WeatherSurface
@@ -26,11 +27,13 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel: WeatherViewModel by viewModels()
     private val fakeData = generateFakeWheaterData()
+    private val weatherViewModel: WeatherViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             YrCaseoppgaveTheme {
+                 
                 WeatherSurface(fakeData)
             }
         }
