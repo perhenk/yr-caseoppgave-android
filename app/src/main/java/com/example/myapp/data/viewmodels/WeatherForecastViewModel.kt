@@ -22,7 +22,7 @@ class WeatherForecastViewModel : ViewModel() {
     val state = internalState
 
 
-    private fun fetchWeatherForecast()
+    fun fetchWeatherForecast()
     {
         viewModelScope.launch {
             internalState.value = UiState.Loadning

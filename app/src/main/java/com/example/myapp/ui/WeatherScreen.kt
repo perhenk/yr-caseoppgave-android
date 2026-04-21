@@ -8,6 +8,9 @@ import com.example.myapp.data.viewmodels.WeatherForecastViewModel
 import com.example.myapp.ui.components.LoadingIcon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,16 +29,17 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
 
     when (uiState){
         is UiState.Error ->{
-            Text("En feil oppstod")
+            Column(modifier = Modifier.padding(10.dp)) {
+                Text("Kunne ikke hente værdata fra internett.")
+                Button(onClick = {weatherForecastViewModel.fetchWeatherForecast()}){
+                    Text("Prøv på nytt")
+                }
+            }
         }
         is UiState.Loadning ->{
             LoadingIcon()
         }
         is UiState.Success ->{
-            Text("Success")
-            println("weatherForecast = ${uiState.weatherForecast}")
-            println("currentWeather = ${uiState.weatherForecast.currentWeather}")
-            println("dailyForecasts = ${uiState.weatherForecast.dailyForecasts}")
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
                     Column ( verticalArrangement = Arrangement.spacedBy(10.dp)) {
