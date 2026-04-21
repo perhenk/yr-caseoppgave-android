@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.example.myapp.data.models.DayForecast
 import com.example.myapp.utils.formatDate
+import kotlin.math.roundToInt
 
 @Composable
 fun DailyForecastsPanel(dailyForecasts: List<DayForecast>,onItemClick: (DayForecast) -> Unit) {
@@ -55,6 +56,6 @@ fun DayForecastRow(dayForecast: DayForecast, onClick: (DayForecast) -> Unit){
         Text(formatDate(dayForecast.time), modifier = Modifier.padding(16.dp))
         WeatherIcon(dayForecast.weatherCode)
         Spacer(modifier = Modifier.weight(1f))
-        Text("${dayForecast.minTemperature}° - ${dayForecast.maxTemperature}°",  modifier = Modifier.padding(16.dp))
+        Text("${dayForecast.minTemperature.roundToInt()}° - ${dayForecast.maxTemperature.roundToInt()}°",  modifier = Modifier.padding(16.dp))
     }
 }

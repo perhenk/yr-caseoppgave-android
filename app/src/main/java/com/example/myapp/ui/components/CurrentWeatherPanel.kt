@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.sp
 import com.example.myapp.data.models.CurrentWeather
 import com.example.myapp.utils.weatherDescription
+import kotlin.math.roundToInt
 
 
 @Composable
@@ -20,9 +22,9 @@ fun CurrentWeatherPanel (currentWeather: CurrentWeather){
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             WeatherIcon(currentWeather.weatherCode)
-            Text("${currentWeather.temperature} °")
+            Text("${currentWeather.temperature.roundToInt()} °", fontSize = 30.sp)
             Text(weatherDescription(currentWeather.weatherCode))
-            Text("Vind ${currentWeather.windspeed} km/t")
+            Text("Vind ${currentWeather.windspeed.roundToInt()} km/t")
         }
 
     }

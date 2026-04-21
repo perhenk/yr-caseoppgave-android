@@ -8,11 +8,15 @@ import com.example.myapp.data.viewmodels.WeatherForecastViewModel
 import com.example.myapp.ui.components.LoadingIcon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -28,7 +32,7 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
     val uiState = weatherForecastViewModel.state.value
     val navController = rememberNavController()
 
-    Surface() {
+    Surface(modifier = Modifier.padding(0.dp,60.dp)) {
     when (uiState) {
         is UiState.Error -> {
             Column(modifier = Modifier.padding(10.dp)) {
@@ -47,7 +51,7 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text("PH's yr app")
+                        Text("PH's yr app", fontSize = 20.sp, modifier = Modifier.padding(20.dp).fillMaxWidth())
                         CurrentWeatherPanel(uiState.weatherForecast.currentWeather)
                         DailyForecastsPanel(
                             uiState.weatherForecast.dailyForecasts.toDayForecastList(),
