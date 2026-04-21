@@ -1,6 +1,5 @@
 package com.example.myapp.ui.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,14 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.example.myapp.data.models.DayForecast
 import com.example.myapp.utils.formatDate
 import kotlin.math.roundToInt
 
 @Composable
-fun DailyForecastsPanel(dailyForecasts: List<DayForecast>,onItemClick: (DayForecast) -> Unit) {
+fun DailyForecastsList(dailyForecasts: List<DayForecast>, onItemClick: (DayForecast) -> Unit) {
     Text("7-dagers varsel")
     LazyColumn(modifier= Modifier.fillMaxSize()) {
         items(dailyForecasts){ data -> DayForecastRow(data,onItemClick)}

@@ -19,8 +19,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp.data.models.toDayForecastList
-import com.example.myapp.ui.components.CurrentWeatherPanel
-import com.example.myapp.ui.components.DailyForecastsPanel
+import com.example.myapp.ui.components.CurrentWeatherSection
+import com.example.myapp.ui.components.DailyForecastsList
 import com.example.myapp.ui.components.DayForecastDetails
 
 
@@ -51,8 +51,8 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
                 composable("list") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app", fontSize = 20.sp, modifier = Modifier.padding(20.dp).fillMaxWidth())
-                        CurrentWeatherPanel(uiState.weatherForecast.currentWeather)
-                        DailyForecastsPanel(
+                        CurrentWeatherSection(uiState.weatherForecast.currentWeather)
+                        DailyForecastsList(
                             dailyForecasts,
                             onItemClick = { forecast ->
                                 selectedForecast = forecast

@@ -15,7 +15,7 @@ import kotlin.math.roundToInt
 
 
 @Composable
-fun CurrentWeatherPanel (currentWeather: CurrentWeather){
+fun CurrentWeatherSection (currentWeather: CurrentWeather){
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth()
