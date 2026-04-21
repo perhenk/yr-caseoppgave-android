@@ -31,6 +31,7 @@ import com.example.myapp.ui.components.DayForecastDetails
 fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewModel()) {
     val uiState = weatherForecastViewModel.state.value
     val navController = rememberNavController()
+    var selectedWeatherForecastIndex = 0
 
     Surface(modifier = Modifier.padding(0.dp,60.dp)) {
     when (uiState) {
@@ -48,19 +49,20 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
         }
 
         is UiState.Success -> {
+            val dailyForecasts = uiState.weatherForecast.dailyForecasts.toDayForecastList()
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app", fontSize = 20.sp, modifier = Modifier.padding(20.dp).fillMaxWidth())
                         CurrentWeatherPanel(uiState.weatherForecast.currentWeather)
                         DailyForecastsPanel(
-                            uiState.weatherForecast.dailyForecasts.toDayForecastList(),
+                            dailyForecasts,
                             onItemClick = { forecast -> navController.navigate("details") })
                     }
                 }
                 composable("details") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { }
-                    DayForecastDetails(navController = navController)
+                    DayForecastDetails(navController = navController, dailyForecasts[selectedWeatherForecastIndex])
                 }
             }
         }
