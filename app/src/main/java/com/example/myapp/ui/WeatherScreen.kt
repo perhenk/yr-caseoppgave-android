@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -27,34 +28,39 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
     val uiState = weatherForecastViewModel.state.value
     val navController = rememberNavController()
 
-    when (uiState){
-        is UiState.Error ->{
+    Surface() {
+    when (uiState) {
+        is UiState.Error -> {
             Column(modifier = Modifier.padding(10.dp)) {
                 Text("Kunne ikke hente værdata fra internett.")
-                Button(onClick = {weatherForecastViewModel.fetchWeatherForecast()}){
+                Button(onClick = { weatherForecastViewModel.fetchWeatherForecast() }) {
                     Text("Prøv på nytt")
                 }
             }
         }
-        is UiState.Loadning ->{
+
+        is UiState.Loading -> {
             LoadingIcon()
         }
-        is UiState.Success ->{
+
+        is UiState.Success -> {
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
-                    Column ( verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app")
                         CurrentWeatherPanel(uiState.weatherForecast.currentWeather)
-                        DailyForecastsPanel(uiState.weatherForecast.dailyForecasts.toDayForecastList(),
-                            onItemClick = {forecast -> navController.navigate("details")})
+                        DailyForecastsPanel(
+                            uiState.weatherForecast.dailyForecasts.toDayForecastList(),
+                            onItemClick = { forecast -> navController.navigate("details") })
                     }
                 }
                 composable("details") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { }
-                    DayForecastDetails(navController=navController)
+                    DayForecastDetails(navController = navController)
                 }
             }
         }
+    }
     }
 
 }

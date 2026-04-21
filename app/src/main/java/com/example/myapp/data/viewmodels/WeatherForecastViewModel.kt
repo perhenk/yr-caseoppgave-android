@@ -11,21 +11,21 @@ import kotlinx.coroutines.launch
 
 
 sealed class UiState{
-    object Loadning: UiState()
+    object Loading: UiState()
     data class Success(val weatherForecast: WeatherForecast): UiState()
     data class Error(val message: String): UiState()
 }
 class WeatherForecastViewModel : ViewModel() {
     private val repository = WeatherRepository()
 
-    private var internalState: MutableState<UiState> = mutableStateOf(UiState.Loadning)
+    private var internalState: MutableState<UiState> = mutableStateOf(UiState.Loading)
     val state = internalState
 
 
     fun fetchWeatherForecast()
     {
         viewModelScope.launch {
-            internalState.value = UiState.Loadning
+            internalState.value = UiState.Loading
             try {
                 val weatherForecast = repository.getWeatherForecast()
                 internalState.value = UiState.Success(weatherForecast)
