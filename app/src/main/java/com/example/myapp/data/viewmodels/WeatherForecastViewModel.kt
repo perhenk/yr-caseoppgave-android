@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
+
 import com.example.myapp.data.models.WeatherForecast
 import com.example.myapp.data.repositories.WeatherRepository
 import kotlinx.coroutines.launch
@@ -30,6 +30,7 @@ class WeatherForecastViewModel : ViewModel() {
                 val weatherForecast = repository.getWeatherForecast()
                 internalState.value = UiState.Success(weatherForecast)
             }catch (e: Exception){
+                e.printStackTrace()
                 internalState.value = UiState.Error("Kunne ikke hente data fra API")
             }
         }
