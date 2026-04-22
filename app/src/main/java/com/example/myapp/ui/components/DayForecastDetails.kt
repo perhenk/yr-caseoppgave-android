@@ -18,15 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapp.data.models.DayForecast
 import com.example.myapp.utils.formatDate
 import com.example.myapp.utils.weatherDescription
-import org.intellij.lang.annotations.JdkConstants
-
 @Composable
 fun DayForecastDetails(navController: NavController, dayForecast: DayForecast) {
 
