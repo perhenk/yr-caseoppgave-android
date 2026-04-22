@@ -29,7 +29,7 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
     val uiState = weatherForecastViewModel.state.value
     val navController = rememberNavController()
 
-    Surface(modifier = Modifier.padding(0.dp,60.dp)) {
+    Surface(modifier = Modifier.padding(0.dp,20.dp)) {
     when (uiState) {
         is UiState.Error -> {
             NetworkErrorMessage({weatherForecastViewModel.fetchWeatherForecast()})
