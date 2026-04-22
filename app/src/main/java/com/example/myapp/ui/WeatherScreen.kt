@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,6 +21,7 @@ import com.example.myapp.data.models.toDayForecastList
 import com.example.myapp.ui.components.CurrentWeatherSection
 import com.example.myapp.ui.components.DailyForecastsList
 import com.example.myapp.ui.components.DayForecastDetails
+import com.example.myapp.ui.components.NetworkErrorMessage
 
 
 @Composable
@@ -32,12 +32,7 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
     Surface(modifier = Modifier.padding(0.dp,60.dp)) {
     when (uiState) {
         is UiState.Error -> {
-            Column(modifier = Modifier.padding(10.dp)) {
-                Text("Kunne ikke hente værdata fra internett.")
-                Button(onClick = { weatherForecastViewModel.fetchWeatherForecast() }) {
-                    Text("Prøv på nytt")
-                }
-            }
+            NetworkErrorMessage({weatherForecastViewModel.fetchWeatherForecast()})
         }
 
         is UiState.Loading -> {
