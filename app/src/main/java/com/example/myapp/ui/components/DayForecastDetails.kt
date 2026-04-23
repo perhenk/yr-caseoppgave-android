@@ -36,7 +36,7 @@ fun DayForecastDetails(navController: NavController, dayForecast: DayForecast) {
                     contentDescription = "Tilbake")
             }
             Text(
-                "${formatDate(dayForecast.time)}",
+                formatDate(dayForecast.time),
                 fontSize = 25.sp,
                 modifier = Modifier.padding(10.dp)
             )
