@@ -9,8 +9,6 @@ import com.example.myapp.ui.theme.YrCaseoppgaveTheme
 
 class MainActivity : ComponentActivity() {
 
-    private val weatherViewModel: WeatherViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
