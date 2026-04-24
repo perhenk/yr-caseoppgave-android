@@ -11,9 +11,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -26,11 +28,12 @@ import com.example.myapp.ui.components.NetworkErrorMessage
 
 @Composable
 fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewModel()) {
-    val uiState = weatherForecastViewModel.state.value
-    val navController = rememberNavController()
+        val navController = rememberNavController()
 
     Surface(modifier = Modifier.padding(0.dp,20.dp)) {
-    when (uiState) {
+
+        val state by weatherForecastViewModel.uiState.collectAsStateWithLifecycle()
+        when (val currentState =state) {
         is UiState.Error -> {
             NetworkErrorMessage({weatherForecastViewModel.fetchWeatherForecast()})
         }
@@ -40,13 +43,14 @@ fun WeatherScreen( weatherForecastViewModel: WeatherForecastViewModel = viewMode
         }
 
         is UiState.Success -> {
-            val dailyForecasts = uiState.weatherForecast.dailyForecasts.toDayForecastList()
+            val dailyForecasts = currentState.weatherForecast.dailyForecasts.toDayForecastList()
+
             var selectedForecast = dailyForecasts[0]
             NavHost(navController = navController, startDestination = "list") {
                 composable("list") {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("PH's yr app", fontSize = 20.sp, modifier = Modifier.padding(20.dp).fillMaxWidth())
-                        CurrentWeatherSection(uiState.weatherForecast.currentWeather)
+                        CurrentWeatherSection(currentState.weatherForecast.currentWeather)
                         DailyForecastsList(
                             dailyForecasts,
                             onItemClick = { forecast ->

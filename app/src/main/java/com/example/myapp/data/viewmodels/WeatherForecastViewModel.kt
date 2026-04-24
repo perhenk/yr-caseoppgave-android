@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 
 import com.example.myapp.data.models.WeatherForecast
 import com.example.myapp.data.repositories.WeatherRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 
@@ -18,20 +21,19 @@ sealed class UiState{
 class WeatherForecastViewModel : ViewModel() {
     private val repository = WeatherRepository()
 
-    private var internalState: MutableState<UiState> = mutableStateOf(UiState.Loading)
-    val state = internalState
-
+    private var _uiState: MutableStateFlow<UiState> = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     fun fetchWeatherForecast()
     {
         viewModelScope.launch {
-            internalState.value = UiState.Loading
+            _uiState.value = UiState.Loading
             try {
                 val weatherForecast = repository.getWeatherForecast()
-                internalState.value = UiState.Success(weatherForecast)
+                _uiState.value = UiState.Success(weatherForecast)
             }catch (e: Exception){
                 e.printStackTrace()
-                internalState.value = UiState.Error("Kunne ikke hente data fra API")
+                _uiState.value = UiState.Error("Kunne ikke hente data fra API")
             }
         }
     }
